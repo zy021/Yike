@@ -13,3 +13,12 @@ angular.module("Ctrls",[])
 		{"href":"#/settings","icon":"icon-cog","text":"设置"}
 	];
 }])
+
+//index 控制器
+.controller("indexCtrl",["$scope","$rootScope","$filter",function($scope,$rootScope,$filter){
+	$rootScope.num = 0;
+	var time=new Date();
+	$scope.time=$filter("date")(new Date(),"yyyy-MM-dd");
+	$rootScope.timeStr=$filter("date")(time,"yyyy-MM-dd");
+	$rootScope.title = "今日一刻";
+}])

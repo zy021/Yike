@@ -1,5 +1,5 @@
 // 创建应用模块
-var app = angular.module("yike",["Ctrls"]);
+var app = angular.module("yike",["Ctrls","ngRoute"]);
 //run方法的作用是在模块创建好之后直接执行
 //因为toggle切换页面的方法对所有页面都有效,所以将该方法绑定在根作用域上
 app.run(["$rootScope",function($rootScope){
@@ -31,3 +31,28 @@ app.run(["$rootScope",function($rootScope){
 		}
 	}
 }]);
+// 修改angularJS路由锚点错误的bug
+app.config(["$locationProvider",function($locationProvider){
+	$locationProvider.hashPrefix("");
+}])
+//配置路由
+app.config(["$routeProvider",function($routeProvider){
+	$routeProvider.when("/",{
+		redirectTo:"/index"
+	}).when("/index",{
+		templateUrl:"./views/list.html",
+		controller:"indexCtrl"
+	}).when("/older",{
+		templateUrl:"./views/older.html"
+	}).when("/author",{
+		templateUrl:"./views/author.html"
+	}).when("/category",{
+		
+	}).when("/favourite",{
+		
+	}).when("/settings",{
+		
+	}).otherwise({
+		redirectTo:"/index"
+	})
+}])
