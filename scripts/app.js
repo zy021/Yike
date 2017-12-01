@@ -11,7 +11,7 @@ app.run(["$rootScope",function($rootScope){
 		$rootScope.collapsed=!$rootScope.collapsed;
 		//将导航栏的小标题添加显示和隐藏效果
 		//获取所有的dd
-		var dds = document.querySelectorAll("dd");
+		var dds = document.querySelectorAll("#index dd");
 		//循环遍历每一个dd,修改dd的样式,达到显示隐藏的效果
 		if ($rootScope.collapsed) {
 			//如果这个值为true,表示显示
@@ -49,7 +49,8 @@ app.config(["$routeProvider",function($routeProvider){
 		templateUrl:"./views/author.html",
 		controller:"authorCtrl"
 	}).when("/category",{
-		
+		templateUrl:"./views/category.html",
+		controller:"categoryCtrl"
 	}).when("/favourite",{
 		
 	}).when("/settings",{

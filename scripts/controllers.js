@@ -42,12 +42,55 @@ angular.module("Ctrls",[])
 	$rootScope.loading=true;
 	//发送请求
 	$http({
-		url:"./api/older.php",
+		url:"./api/older.php"
 		//params:{time:$scope.time}
 	}).then(function(data){
  		console.log(data.data[1].posts);
  		$scope.posts=data.data[1].posts;
  		$scope.time=data.data[0];
+ 		$rootScope.loading=false;
+	})
+}])
+.controller("authorCtrl",["$scope","$rootScope","$filter","$http",function($scope,$rootScope,$filter,$http){
+	$rootScope.num = 2;
+	$rootScope.title = "热门作者";
+	$rootScope.loading=true;
+	//发送请求
+	$http({
+		url:"./api/author.php"
+		//params:{time:$scope.time}
+	}).then(function(data){
+		console.log(data.data[0].authors,data.data[1].authors);
+ 		$scope.posts=data.data[0].authors;
+ 		$scope.posts1=data.data[1].authors;
+ 		$rootScope.loading=false;
+	})
+}])
+.controller("categoryCtrl",["$scope","$rootScope","$filter","$http",function($scope,$rootScope,$filter,$http){
+	$rootScope.num = 3;
+	$rootScope.title = "栏目浏览";
+	$rootScope.loading=true;
+	//发送请求
+	$http({
+		url:"./api/category.php"
+		//params:{time:$scope.time}
+	}).then(function(data){
+		console.log(data.data.columns);
+ 		$scope.posts=data.data.columns;
+ 		$rootScope.loading=false;
+	})
+}])
+.controller("favouriteCtrl",["$scope","$rootScope","$filter","$http",function($scope,$rootScope,$filter,$http){
+	$rootScope.num = 4;
+	$rootScope.title = "我的喜欢";
+	$rootScope.loading=true;
+	//发送请求
+	$http({
+		url:"./api/favorite.php"
+		//params:{time:$scope.time}
+	}).then(function(data){
+		console.log(data.data.posts);
+ 		$scope.posts=data.data.posts;
  		$rootScope.loading=false;
 	})
 }])
