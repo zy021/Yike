@@ -15,10 +15,39 @@ angular.module("Ctrls",[])
 }])
 
 //index 控制器
-.controller("indexCtrl",["$scope","$rootScope","$filter",function($scope,$rootScope,$filter){
+.controller("indexCtrl",["$scope","$rootScope","$filter","$http",function($scope,$rootScope,$filter,$http){
 	$rootScope.num = 0;
-	var time=new Date();
 	$scope.time=$filter("date")(new Date(),"yyyy-MM-dd");
-	$rootScope.timeStr=$filter("date")(time,"yyyy-MM-dd");
+	// var time=new Date();
+	// $rootScope.timeStr=$filter("date")(time,"yyyy-MM-dd");
 	$rootScope.title = "今日一刻";
+	//显示加载图片
+	$rootScope.loading=true;
+	//发送请求
+	$http({
+		url:"./api/index.php",
+		params:{time:$scope.time}
+	}).then(function(data){
+ 		console.log(data.data.posts);
+ 		$scope.posts=data.data.posts;
+ 		//请求结束 获得数据后,加载图片消失
+ 		$rootScope.loading=false;
+	})
+}])
+.controller("olderCtrl",["$scope","$rootScope","$filter","$http",function($scope,$rootScope,$filter,$http){
+	$rootScope.num = 1;
+	// var time=new Date();
+	// time.setTime(time.getTime()-24*3600*1000);
+	$rootScope.title = "往期内容";
+	$rootScope.loading=true;
+	//发送请求
+	$http({
+		url:"./api/older.php",
+		//params:{time:$scope.time}
+	}).then(function(data){
+ 		console.log(data.data[1].posts);
+ 		$scope.posts=data.data[1].posts;
+ 		$scope.time=data.data[0];
+ 		$rootScope.loading=false;
+	})
 }])

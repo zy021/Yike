@@ -43,9 +43,11 @@ app.config(["$routeProvider",function($routeProvider){
 		templateUrl:"./views/list.html",
 		controller:"indexCtrl"
 	}).when("/older",{
-		templateUrl:"./views/older.html"
+		templateUrl:"./views/older.html",
+		controller:"olderCtrl"
 	}).when("/author",{
-		templateUrl:"./views/author.html"
+		templateUrl:"./views/author.html",
+		controller:"authorCtrl"
 	}).when("/category",{
 		
 	}).when("/favourite",{

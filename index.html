@@ -42,6 +42,10 @@
 			</div>
 			<!-- 主体 -->
 			<div ng-class="{body:true,collapse:collapsed}">
+				<!-- 显示加载图片,未获取到数据时,就显示图片,获取到数据化,图片消失 -->
+				<div ng-if="loading">
+					<img src="public/images/0000.gif">
+				</div>
 				<div ng-view></div>
 			</div>
 		</div>
